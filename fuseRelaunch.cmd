@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/lengyu/linux_project_dir/vivado_dir/hans_solution/tb_top2_isim_beh.exe" -prj "/home/lengyu/linux_project_dir/vivado_dir/hans_solution/tb_top2_beh.prj" "work.tb_top2" "work.glbl" 

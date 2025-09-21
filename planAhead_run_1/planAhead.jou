@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Mon Sep 15 15:59:46 2025
+# Process ID: 12490
+# Log file: /home/lengyu/linux_project_dir/vivado_dir/hans_solution/planAhead_run_1/planAhead.log
+# Journal file: /home/lengyu/linux_project_dir/vivado_dir/hans_solution/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/lengyu/linux_project_dir/vivado_dir/hans_solution/pa.fromNetlist.tcl

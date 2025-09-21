@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/lengyu/linux_project_dir/vivado_dir/hans_solution/top.ncd
+OUTFILE=/home/lengyu/linux_project_dir/vivado_dir/hans_solution/top.bit
+FAMILY=Spartan3A and Spartan3AN
+PART=xc3s50an-5tqg144
+WORKINGDIR=/home/lengyu/linux_project_dir/vivado_dir/hans_solution
+LICENSE=WebPack
+USER_INFO=_

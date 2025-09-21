@@ -1,0 +1,1125 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.02 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.02 secs
+ 
+--> 
+Reading design: top.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top"
+Output Format                      : NGC
+Target Device                      : xc3s50an-5-tqg144
+
+---- Source Options
+Top Module Name                    : top
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling verilog file "m_sequence_generator.v" in library work
+Compiling verilog file "dpll_clock_recovery.v" in library work
+Module <m_sequence_generator> compiled
+Compiling verilog file "display.v" in library work
+Module <dpll_clock_recovery> compiled
+Compiling verilog file "top.v" in library work
+Module <display> compiled
+Module <top> compiled
+No errors in compilation
+Analysis of file <"top.prj"> succeeded.
+ 
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for module <top> in library <work>.
+
+Analyzing hierarchy for module <m_sequence_generator> in library <work>.
+
+Analyzing hierarchy for module <dpll_clock_recovery> in library <work> with parameters.
+	GATE_CNT = 2000000
+	GATE_TIME = "00000000000000000000000000000001"
+	KI = "00000101"
+	KP = "00010000"
+	clk_2m_FREQ = "00000000000111101000010010000000"
+
+Analyzing hierarchy for module <display> in library <work> with parameters.
+	GATE_CNT = 2000000
+	GATE_TIME = "00000000000000000000000000000001"
+	SYS_CLK_FREQ = "00000000000111101000010010000000"
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing top module <top>.
+Module <top> is correct for synthesis.
+ 
+Analyzing module <m_sequence_generator> in library <work>.
+Module <m_sequence_generator> is correct for synthesis.
+ 
+Analyzing module <dpll_clock_recovery> in library <work>.
+	GATE_CNT = 2000000
+	GATE_TIME = 32'sb00000000000000000000000000000001
+	KI = 8'b00000101
+	KP = 8'b00010000
+	clk_2m_FREQ = 32'sb00000000000111101000010010000000
+Module <dpll_clock_recovery> is correct for synthesis.
+ 
+Analyzing module <display> in library <work>.
+	GATE_CNT = 2000000
+	GATE_TIME = 32'sb00000000000000000000000000000001
+	SYS_CLK_FREQ = 32'sb00000000000111101000010010000000
+Module <display> is correct for synthesis.
+ 
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+INFO:Xst:2679 - Register <dot> in unit <display> has a constant value of 1 during circuit operation. The register is replaced by logic.
+
+Synthesizing Unit <m_sequence_generator>.
+    Related source file is "m_sequence_generator.v".
+    Found 1-bit register for signal <m_seq_out>.
+    Found 1-bit xor4 for signal <feedback>.
+    Found 8-bit register for signal <lfsr>.
+    Summary:
+	inferred   1 D-type flip-flop(s).
+	inferred   1 Xor(s).
+Unit <m_sequence_generator> synthesized.
+
+
+Synthesizing Unit <dpll_clock_recovery>.
+    Related source file is "dpll_clock_recovery.v".
+WARNING:Xst:643 - "dpll_clock_recovery.v" line 112: The result of a 32x12-bit multiplication is partially used. Only the 32 least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
+WARNING:Xst:643 - "dpll_clock_recovery.v" line 180: The result of a 32x4-bit multiplication is partially used. Only the 32 least significant bits are used. If you are doing this on purpose, you may safely ignore this warning. Otherwise, make sure you are not losing information, leading to unexpected circuit behavior.
+    Found 1-bit register for signal <locked>.
+    Found 1-bit register for signal <recovered_clk>.
+    Found 32-bit adder for signal <$add0000> created at line 180.
+    Found 32-bit adder for signal <add0000$addsub0000> created at line 180.
+    Found 32-bit register for signal <dco_increment>.
+    Found 32x4-bit multiplier for signal <dco_increment$mult0001> created at line 180.
+    Found 32-bit up accumulator for signal <dco_phase>.
+    Found 1-bit xor2 for signal <edge_detected$xor0000> created at line 122.
+    Found 1-bit xor2 for signal <edge_detected$xor0001> created at line 122.
+    Found 32-bit register for signal <freq_value>.
+    Found 32-bit up counter for signal <gate_cnt>.
+    Found 32-bit comparator less for signal <gate_cnt$cmp_lt0000> created at line 50.
+    Found 1-bit register for signal <gate_done>.
+    Found 1-bit register for signal <gate_en>.
+    Found 32-bit register for signal <INIT_INC>.
+    Found 32x12-bit multiplier for signal <INIT_INC$mult0001> created at line 112.
+    Found 32-bit register for signal <int_error>.
+    Found 32-bit adder for signal <int_error$addsub0000> created at line 168.
+    Found 33-bit comparator greater for signal <int_error$cmp_gt0000> created at line 171.
+    Found 32-bit comparator less for signal <int_error$cmp_lt0000> created at line 173.
+    Found 32-bit 4-to-1 multiplexer for signal <int_error$mux0000>.
+    Found 8-bit updown counter for signal <lock_counter>.
+    Found 17-bit comparator greatequal for signal <lock_counter$cmp_ge0000> created at line 185.
+    Found 32-bit comparator greater for signal <lock_counter$cmp_gt0000> created at line 185.
+    Found 32-bit comparator lessequal for signal <lock_counter$cmp_le0000> created at line 185.
+    Found 17-bit comparator less for signal <lock_counter$cmp_lt0000> created at line 185.
+    Found 8-bit comparator greater for signal <locked$cmp_gt0000> created at line 200.
+    Found 3-bit register for signal <m_seq_delay>.
+    Found 16-bit register for signal <phase_diff>.
+    Found 16-bit register for signal <phase_error>.
+    Found 16-bit register for signal <phase_now>.
+    Found 32-bit up counter for signal <pulse_cnt>.
+    Found 1-bit register for signal <sync0>.
+    Found 1-bit register for signal <sync1>.
+    Summary:
+	inferred   3 Counter(s).
+	inferred   1 Accumulator(s).
+	inferred 185 D-type flip-flop(s).
+	inferred   3 Adder/Subtractor(s).
+	inferred   2 Multiplier(s).
+	inferred   8 Comparator(s).
+	inferred  32 Multiplexer(s).
+Unit <dpll_clock_recovery> synthesized.
+
+
+Synthesizing Unit <display>.
+    Related source file is "display.v".
+WARNING:Xst:646 - Signal <value> is assigned but never used. This unconnected signal will be trimmed during the optimization process.
+    Found 4-bit 8-to-1 multiplexer for signal <DCBA>.
+    Found 4-bit adder for signal <$add0000> created at line 120.
+    Found 4-bit adder for signal <$add0001> created at line 120.
+    Found 4-bit adder for signal <$add0002> created at line 120.
+    Found 4-bit adder for signal <$add0003> created at line 120.
+    Found 4-bit adder for signal <$add0004> created at line 120.
+    Found 4-bit adder for signal <$add0005> created at line 120.
+    Found 4-bit adder for signal <$add0006> created at line 120.
+    Found 4-bit adder for signal <$add0007> created at line 120.
+    Found 4-bit adder for signal <$add0008> created at line 120.
+    Found 4-bit adder for signal <$add0009> created at line 120.
+    Found 4-bit adder for signal <$add0010> created at line 120.
+    Found 4-bit adder for signal <$add0011> created at line 120.
+    Found 4-bit adder for signal <$add0012> created at line 120.
+    Found 4-bit adder for signal <$add0013> created at line 120.
+    Found 4-bit adder for signal <$add0014> created at line 120.
+    Found 4-bit adder for signal <$add0015> created at line 120.
+    Found 4-bit adder for signal <$add0016> created at line 120.
+    Found 4-bit adder for signal <$add0017> created at line 120.
+    Found 4-bit adder for signal <$add0018> created at line 120.
+    Found 4-bit adder for signal <$add0019> created at line 120.
+    Found 4-bit adder for signal <$add0020> created at line 120.
+    Found 4-bit adder for signal <$add0021> created at line 120.
+    Found 4-bit adder for signal <$add0022> created at line 120.
+    Found 4-bit adder for signal <$add0023> created at line 120.
+    Found 4-bit adder for signal <$add0024> created at line 120.
+    Found 4-bit adder for signal <$add0025> created at line 120.
+    Found 4-bit adder for signal <$add0026> created at line 120.
+    Found 4-bit adder for signal <$add0027> created at line 120.
+    Found 4-bit adder for signal <$add0028> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0000> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0001> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0002> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0003> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0004> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0005> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0006> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0007> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0008> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0009> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0010> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0011> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0012> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0013> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0014> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0015> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0016> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0017> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0018> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0019> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0020> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0021> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0022> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0023> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0024> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0025> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0026> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0027> created at line 120.
+    Found 4-bit comparator greatequal for signal <bcd5$cmp_ge0028> created at line 120.
+    Found 32-bit register for signal <freq_value>.
+    Found 32-bit up counter for signal <gate_cnt>.
+    Found 32-bit comparator less for signal <gate_cnt$cmp_lt0000> created at line 45.
+    Found 1-bit register for signal <gate_done>.
+    Found 1-bit register for signal <gate_en>.
+    Found 4-bit adder for signal <old_bcd1_102$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_102$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_108$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_108$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_114$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_114$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_12$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_12$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_120$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_120$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_126$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_126$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_132$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_132$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_138$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_138$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_144$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_144$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_150$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_150$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_156$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_156$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_162$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_162$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_168$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_168$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_174$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_174$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_18$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_18$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_180$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_180$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_24$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_24$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_30$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_30$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_36$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_36$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_42$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_42$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_48$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_48$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_54$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_54$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_6$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_6$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_60$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_60$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_66$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_66$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_72$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_72$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_78$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_78$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_84$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_84$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_90$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_90$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd1_96$addsub0000> created at line 121.
+    Found 4-bit comparator greatequal for signal <old_bcd1_96$cmp_ge0000> created at line 121.
+    Found 4-bit adder for signal <old_bcd2_101$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_101$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_107$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_107$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_11$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_11$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_113$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_113$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_119$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_119$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_125$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_125$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_131$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_131$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_137$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_137$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_143$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_143$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_149$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_149$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_155$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_155$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_161$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_161$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_167$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_167$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_17$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_17$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_173$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_173$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_179$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_179$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_23$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_23$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_29$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_29$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_35$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_35$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_41$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_41$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_47$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_47$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_5$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_5$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_53$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_53$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_59$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_59$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_65$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_65$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_71$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_71$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_77$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_77$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_83$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_83$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_89$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_89$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd2_95$addsub0000> created at line 122.
+    Found 4-bit comparator greatequal for signal <old_bcd2_95$cmp_ge0000> created at line 122.
+    Found 4-bit adder for signal <old_bcd3_10$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_10$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_100$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_100$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_106$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_106$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_112$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_112$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_118$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_118$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_124$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_124$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_130$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_130$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_136$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_136$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_142$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_142$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_148$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_148$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_154$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_154$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_16$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_16$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_160$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_160$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_166$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_166$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_172$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_172$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_178$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_178$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_22$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_22$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_28$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_28$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_34$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_34$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_4$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_4$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_40$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_40$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_46$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_46$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_52$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_52$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_58$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_58$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_64$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_64$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_70$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_70$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_76$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_76$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_82$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_82$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_88$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_88$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd3_94$addsub0000> created at line 123.
+    Found 4-bit comparator greatequal for signal <old_bcd3_94$cmp_ge0000> created at line 123.
+    Found 4-bit adder for signal <old_bcd4_105$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_105$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_111$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_111$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_117$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_117$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_123$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_123$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_129$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_129$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_135$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_135$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_141$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_141$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_147$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_147$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_15$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_15$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_153$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_153$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_159$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_159$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_165$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_165$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_171$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_171$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_177$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_177$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_21$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_21$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_27$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_27$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_3$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_3$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_33$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_33$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_39$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_39$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_45$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_45$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_51$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_51$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_57$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_57$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_63$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_63$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_69$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_69$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_75$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_75$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_81$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_81$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_87$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_87$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_9$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_9$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_93$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_93$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd4_99$addsub0000> created at line 124.
+    Found 4-bit comparator greatequal for signal <old_bcd4_99$cmp_ge0000> created at line 124.
+    Found 4-bit adder for signal <old_bcd5_104$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_104$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_110$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_110$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_116$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_116$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_122$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_122$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_128$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_128$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_134$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_134$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_14$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_14$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_140$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_140$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_146$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_146$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_152$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_152$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_158$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_158$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_164$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_164$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_170$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_170$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_176$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_176$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_2$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_2$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_20$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_20$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_26$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_26$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_32$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_32$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_38$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_38$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_44$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_44$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_50$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_50$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_56$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_56$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_62$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_62$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_68$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_68$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_74$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_74$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_8$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_8$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_80$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_80$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_86$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_86$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_92$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_92$cmp_ge0000> created at line 125.
+    Found 4-bit adder for signal <old_bcd5_98$addsub0000> created at line 125.
+    Found 4-bit comparator greatequal for signal <old_bcd5_98$cmp_ge0000> created at line 125.
+    Found 32-bit up counter for signal <pulse_cnt>.
+    Found 16-bit up counter for signal <scan_cnt>.
+    Found 16-bit comparator greatequal for signal <scan_cnt$cmp_ge0000> created at line 148.
+    Found 3-bit up counter for signal <scan_sel>.
+    Found 1-bit register for signal <sync0>.
+    Found 1-bit register for signal <sync1>.
+    Summary:
+	inferred   4 Counter(s).
+	inferred  36 D-type flip-flop(s).
+	inferred 179 Adder/Subtractor(s).
+	inferred 181 Comparator(s).
+	inferred   4 Multiplexer(s).
+Unit <display> synthesized.
+
+
+Synthesizing Unit <top>.
+    Related source file is "top.v".
+Unit <top> synthesized.
+
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 2
+ 32x12-bit multiplier                                  : 1
+ 32x4-bit multiplier                                   : 1
+# Adders/Subtractors                                   : 182
+ 32-bit adder                                          : 3
+ 4-bit adder                                           : 179
+# Counters                                             : 7
+ 16-bit up counter                                     : 1
+ 3-bit up counter                                      : 1
+ 32-bit up counter                                     : 4
+ 8-bit updown counter                                  : 1
+# Accumulators                                         : 1
+ 32-bit up accumulator                                 : 1
+# Registers                                            : 52
+ 1-bit register                                        : 43
+ 16-bit register                                       : 3
+ 3-bit register                                        : 1
+ 32-bit register                                       : 4
+ 8-bit register                                        : 1
+# Comparators                                          : 189
+ 16-bit comparator greatequal                          : 1
+ 17-bit comparator greatequal                          : 1
+ 17-bit comparator less                                : 1
+ 32-bit comparator greater                             : 1
+ 32-bit comparator less                                : 3
+ 32-bit comparator lessequal                           : 1
+ 33-bit comparator greater                             : 1
+ 4-bit comparator greatequal                           : 179
+ 8-bit comparator greater                              : 1
+# Multiplexers                                         : 2
+ 32-bit 4-to-1 multiplexer                             : 1
+ 4-bit 8-to-1 multiplexer                              : 1
+# Xors                                                 : 3
+ 1-bit xor2                                            : 2
+ 1-bit xor4                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 2
+ 32x12-bit multiplier                                  : 1
+ 32x4-bit multiplier                                   : 1
+# Adders/Subtractors                                   : 182
+ 3-bit adder                                           : 30
+ 32-bit adder                                          : 3
+ 4-bit adder                                           : 149
+# Counters                                             : 7
+ 16-bit up counter                                     : 1
+ 3-bit up counter                                      : 1
+ 32-bit up counter                                     : 4
+ 8-bit updown counter                                  : 1
+# Accumulators                                         : 1
+ 32-bit up accumulator                                 : 1
+# Registers                                            : 230
+ Flip-Flops                                            : 230
+# Comparators                                          : 189
+ 16-bit comparator greatequal                          : 1
+ 17-bit comparator greatequal                          : 1
+ 17-bit comparator less                                : 1
+ 32-bit comparator greater                             : 1
+ 32-bit comparator less                                : 3
+ 32-bit comparator lessequal                           : 1
+ 33-bit comparator greater                             : 1
+ 4-bit comparator greatequal                           : 179
+ 8-bit comparator greater                              : 1
+# Multiplexers                                         : 2
+ 32-bit 4-to-1 multiplexer                             : 1
+ 4-bit 8-to-1 multiplexer                              : 1
+# Xors                                                 : 3
+ 1-bit xor2                                            : 2
+ 1-bit xor4                                            : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+
+Optimizing unit <top> ...
+
+Optimizing unit <dpll_clock_recovery> ...
+
+Optimizing unit <display> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+INFO:Xst:2261 - The FF/Latch <dpll_clock_recovery/sync0> in Unit <top> is equivalent to the following FF/Latch, which will be removed : <display/sync0> 
+INFO:Xst:2261 - The FF/Latch <dpll_clock_recovery/sync1> in Unit <top> is equivalent to the following FF/Latch, which will be removed : <display/sync1> 
+Found area constraint ratio of 100 (+ 5) on block top, actual ratio is 93.
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 415
+ Flip-Flops                                            : 415
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : top.ngr
+Top Level Output File Name         : top
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 17
+
+Cell Usage :
+# BELS                             : 1909
+#      GND                         : 1
+#      INV                         : 48
+#      LUT1                        : 12
+#      LUT2                        : 212
+#      LUT3                        : 302
+#      LUT4                        : 607
+#      LUT4_L                      : 1
+#      MUXCY                       : 371
+#      MUXF5                       : 35
+#      VCC                         : 1
+#      XORCY                       : 319
+# FlipFlops/Latches                : 415
+#      FD                          : 3
+#      FDC                         : 157
+#      FDCE                        : 219
+#      FDCPE                       : 32
+#      FDP                         : 4
+# Clock Buffers                    : 2
+#      BUFG                        : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 16
+#      IBUF                        : 2
+#      OBUF                        : 14
+# MULTs                            : 2
+#      MULT18X18SIO                : 2
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s50antqg144-5 
+
+ Number of Slices:                      646  out of    704    91%  
+ Number of Slice Flip Flops:            415  out of   1408    29%  
+ Number of 4 input LUTs:               1182  out of   1408    83%  
+ Number of IOs:                          17
+ Number of bonded IOBs:                  17  out of    108    15%  
+ Number of MULT18X18SIOs:                 2  out of      3    66%  
+ Number of GCLKs:                         2  out of     24     8%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+clk_10k                            | IBUF+BUFG              | 9     |
+clk_2m                             | BUFGP                  | 406   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+---------------------------------------------------------------------------------------------+-------------------------------------------+-------+
+Control Signal                                                                               | Buffer(FF name)                           | Load  |
+---------------------------------------------------------------------------------------------+-------------------------------------------+-------+
+display/rst_n_inv(m_seq_gen/lfsr_Acst_inv1_INV_0:O)                                          | NONE(display/freq_value_0)                | 380   |
+dpll_clock_recovery/dco_increment_0_and0000(dpll_clock_recovery/dco_increment_0_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_0) | 1     |
+dpll_clock_recovery/dco_increment_0_and0001(dpll_clock_recovery/dco_increment_0_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_0) | 1     |
+dpll_clock_recovery/dco_increment_10_and0000(dpll_clock_recovery/dco_increment_10_and00001:O)| NONE(dpll_clock_recovery/dco_increment_10)| 1     |
+dpll_clock_recovery/dco_increment_10_and0001(dpll_clock_recovery/dco_increment_10_and00011:O)| NONE(dpll_clock_recovery/dco_increment_10)| 1     |
+dpll_clock_recovery/dco_increment_11_and0000(dpll_clock_recovery/dco_increment_11_and00001:O)| NONE(dpll_clock_recovery/dco_increment_11)| 1     |
+dpll_clock_recovery/dco_increment_11_and0001(dpll_clock_recovery/dco_increment_11_and00011:O)| NONE(dpll_clock_recovery/dco_increment_11)| 1     |
+dpll_clock_recovery/dco_increment_12_and0000(dpll_clock_recovery/dco_increment_12_and00001:O)| NONE(dpll_clock_recovery/dco_increment_12)| 1     |
+dpll_clock_recovery/dco_increment_12_and0001(dpll_clock_recovery/dco_increment_12_and00011:O)| NONE(dpll_clock_recovery/dco_increment_12)| 1     |
+dpll_clock_recovery/dco_increment_13_and0000(dpll_clock_recovery/dco_increment_13_and00001:O)| NONE(dpll_clock_recovery/dco_increment_13)| 1     |
+dpll_clock_recovery/dco_increment_13_and0001(dpll_clock_recovery/dco_increment_13_and00011:O)| NONE(dpll_clock_recovery/dco_increment_13)| 1     |
+dpll_clock_recovery/dco_increment_14_and0000(dpll_clock_recovery/dco_increment_14_and00001:O)| NONE(dpll_clock_recovery/dco_increment_14)| 1     |
+dpll_clock_recovery/dco_increment_14_and0001(dpll_clock_recovery/dco_increment_14_and00011:O)| NONE(dpll_clock_recovery/dco_increment_14)| 1     |
+dpll_clock_recovery/dco_increment_15_and0000(dpll_clock_recovery/dco_increment_15_and00001:O)| NONE(dpll_clock_recovery/dco_increment_15)| 1     |
+dpll_clock_recovery/dco_increment_15_and0001(dpll_clock_recovery/dco_increment_15_and00011:O)| NONE(dpll_clock_recovery/dco_increment_15)| 1     |
+dpll_clock_recovery/dco_increment_16_and0000(dpll_clock_recovery/dco_increment_16_and00001:O)| NONE(dpll_clock_recovery/dco_increment_16)| 1     |
+dpll_clock_recovery/dco_increment_16_and0001(dpll_clock_recovery/dco_increment_16_and00011:O)| NONE(dpll_clock_recovery/dco_increment_16)| 1     |
+dpll_clock_recovery/dco_increment_17_and0000(dpll_clock_recovery/dco_increment_17_and00001:O)| NONE(dpll_clock_recovery/dco_increment_17)| 1     |
+dpll_clock_recovery/dco_increment_17_and0001(dpll_clock_recovery/dco_increment_17_and00011:O)| NONE(dpll_clock_recovery/dco_increment_17)| 1     |
+dpll_clock_recovery/dco_increment_18_and0000(dpll_clock_recovery/dco_increment_18_and00001:O)| NONE(dpll_clock_recovery/dco_increment_18)| 1     |
+dpll_clock_recovery/dco_increment_18_and0001(dpll_clock_recovery/dco_increment_18_and00011:O)| NONE(dpll_clock_recovery/dco_increment_18)| 1     |
+dpll_clock_recovery/dco_increment_19_and0000(dpll_clock_recovery/dco_increment_19_and00001:O)| NONE(dpll_clock_recovery/dco_increment_19)| 1     |
+dpll_clock_recovery/dco_increment_19_and0001(dpll_clock_recovery/dco_increment_19_and00011:O)| NONE(dpll_clock_recovery/dco_increment_19)| 1     |
+dpll_clock_recovery/dco_increment_1_and0000(dpll_clock_recovery/dco_increment_1_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_1) | 1     |
+dpll_clock_recovery/dco_increment_1_and0001(dpll_clock_recovery/dco_increment_1_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_1) | 1     |
+dpll_clock_recovery/dco_increment_20_and0000(dpll_clock_recovery/dco_increment_20_and00001:O)| NONE(dpll_clock_recovery/dco_increment_20)| 1     |
+dpll_clock_recovery/dco_increment_20_and0001(dpll_clock_recovery/dco_increment_20_and00011:O)| NONE(dpll_clock_recovery/dco_increment_20)| 1     |
+dpll_clock_recovery/dco_increment_21_and0000(dpll_clock_recovery/dco_increment_21_and00001:O)| NONE(dpll_clock_recovery/dco_increment_21)| 1     |
+dpll_clock_recovery/dco_increment_21_and0001(dpll_clock_recovery/dco_increment_21_and00011:O)| NONE(dpll_clock_recovery/dco_increment_21)| 1     |
+dpll_clock_recovery/dco_increment_22_and0000(dpll_clock_recovery/dco_increment_22_and00001:O)| NONE(dpll_clock_recovery/dco_increment_22)| 1     |
+dpll_clock_recovery/dco_increment_22_and0001(dpll_clock_recovery/dco_increment_22_and00011:O)| NONE(dpll_clock_recovery/dco_increment_22)| 1     |
+dpll_clock_recovery/dco_increment_23_and0000(dpll_clock_recovery/dco_increment_23_and00001:O)| NONE(dpll_clock_recovery/dco_increment_23)| 1     |
+dpll_clock_recovery/dco_increment_23_and0001(dpll_clock_recovery/dco_increment_23_and00011:O)| NONE(dpll_clock_recovery/dco_increment_23)| 1     |
+dpll_clock_recovery/dco_increment_24_and0000(dpll_clock_recovery/dco_increment_24_and00001:O)| NONE(dpll_clock_recovery/dco_increment_24)| 1     |
+dpll_clock_recovery/dco_increment_24_and0001(dpll_clock_recovery/dco_increment_24_and00011:O)| NONE(dpll_clock_recovery/dco_increment_24)| 1     |
+dpll_clock_recovery/dco_increment_25_and0000(dpll_clock_recovery/dco_increment_25_and00001:O)| NONE(dpll_clock_recovery/dco_increment_25)| 1     |
+dpll_clock_recovery/dco_increment_25_and0001(dpll_clock_recovery/dco_increment_25_and00011:O)| NONE(dpll_clock_recovery/dco_increment_25)| 1     |
+dpll_clock_recovery/dco_increment_26_and0000(dpll_clock_recovery/dco_increment_26_and00001:O)| NONE(dpll_clock_recovery/dco_increment_26)| 1     |
+dpll_clock_recovery/dco_increment_26_and0001(dpll_clock_recovery/dco_increment_26_and00011:O)| NONE(dpll_clock_recovery/dco_increment_26)| 1     |
+dpll_clock_recovery/dco_increment_27_and0000(dpll_clock_recovery/dco_increment_27_and00001:O)| NONE(dpll_clock_recovery/dco_increment_27)| 1     |
+dpll_clock_recovery/dco_increment_27_and0001(dpll_clock_recovery/dco_increment_27_and00011:O)| NONE(dpll_clock_recovery/dco_increment_27)| 1     |
+dpll_clock_recovery/dco_increment_28_and0000(dpll_clock_recovery/dco_increment_28_and00001:O)| NONE(dpll_clock_recovery/dco_increment_28)| 1     |
+dpll_clock_recovery/dco_increment_28_and0001(dpll_clock_recovery/dco_increment_28_and00011:O)| NONE(dpll_clock_recovery/dco_increment_28)| 1     |
+dpll_clock_recovery/dco_increment_29_and0000(dpll_clock_recovery/dco_increment_29_and00001:O)| NONE(dpll_clock_recovery/dco_increment_29)| 1     |
+dpll_clock_recovery/dco_increment_29_and0001(dpll_clock_recovery/dco_increment_29_and00011:O)| NONE(dpll_clock_recovery/dco_increment_29)| 1     |
+dpll_clock_recovery/dco_increment_2_and0000(dpll_clock_recovery/dco_increment_2_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_2) | 1     |
+dpll_clock_recovery/dco_increment_2_and0001(dpll_clock_recovery/dco_increment_2_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_2) | 1     |
+dpll_clock_recovery/dco_increment_30_and0000(dpll_clock_recovery/dco_increment_30_and00001:O)| NONE(dpll_clock_recovery/dco_increment_30)| 1     |
+dpll_clock_recovery/dco_increment_30_and0001(dpll_clock_recovery/dco_increment_30_and00011:O)| NONE(dpll_clock_recovery/dco_increment_30)| 1     |
+dpll_clock_recovery/dco_increment_31_and0000(dpll_clock_recovery/dco_increment_31_and00001:O)| NONE(dpll_clock_recovery/dco_increment_31)| 1     |
+dpll_clock_recovery/dco_increment_31_and0001(dpll_clock_recovery/dco_increment_31_and00011:O)| NONE(dpll_clock_recovery/dco_increment_31)| 1     |
+dpll_clock_recovery/dco_increment_3_and0000(dpll_clock_recovery/dco_increment_3_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_3) | 1     |
+dpll_clock_recovery/dco_increment_3_and0001(dpll_clock_recovery/dco_increment_3_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_3) | 1     |
+dpll_clock_recovery/dco_increment_4_and0000(dpll_clock_recovery/dco_increment_4_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_4) | 1     |
+dpll_clock_recovery/dco_increment_4_and0001(dpll_clock_recovery/dco_increment_4_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_4) | 1     |
+dpll_clock_recovery/dco_increment_5_and0000(dpll_clock_recovery/dco_increment_5_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_5) | 1     |
+dpll_clock_recovery/dco_increment_5_and0001(dpll_clock_recovery/dco_increment_5_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_5) | 1     |
+dpll_clock_recovery/dco_increment_6_and0000(dpll_clock_recovery/dco_increment_6_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_6) | 1     |
+dpll_clock_recovery/dco_increment_6_and0001(dpll_clock_recovery/dco_increment_6_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_6) | 1     |
+dpll_clock_recovery/dco_increment_7_and0000(dpll_clock_recovery/dco_increment_7_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_7) | 1     |
+dpll_clock_recovery/dco_increment_7_and0001(dpll_clock_recovery/dco_increment_7_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_7) | 1     |
+dpll_clock_recovery/dco_increment_8_and0000(dpll_clock_recovery/dco_increment_8_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_8) | 1     |
+dpll_clock_recovery/dco_increment_8_and0001(dpll_clock_recovery/dco_increment_8_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_8) | 1     |
+dpll_clock_recovery/dco_increment_9_and0000(dpll_clock_recovery/dco_increment_9_and00001:O)  | NONE(dpll_clock_recovery/dco_increment_9) | 1     |
+dpll_clock_recovery/dco_increment_9_and0001(dpll_clock_recovery/dco_increment_9_and00011:O)  | NONE(dpll_clock_recovery/dco_increment_9) | 1     |
+---------------------------------------------------------------------------------------------+-------------------------------------------+-------+
+
+Timing Summary:
+---------------
+Speed Grade: -5
+
+   Minimum period: 10.173ns (Maximum Frequency: 98.301MHz)
+   Minimum input arrival time before clock: 1.401ns
+   Maximum output required time after clock: 69.640ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk_10k'
+  Clock period: 1.741ns (frequency: 574.399MHz)
+  Total number of paths / destination ports: 12 / 9
+-------------------------------------------------------------------------
+Delay:               1.741ns (Levels of Logic = 1)
+  Source:            m_seq_gen/lfsr_2 (FF)
+  Destination:       m_seq_gen/lfsr_0 (FF)
+  Source Clock:      clk_10k rising
+  Destination Clock: clk_10k rising
+
+  Data Path: m_seq_gen/lfsr_2 to m_seq_gen/lfsr_0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              2   0.495   0.488  m_seq_gen/lfsr_2 (m_seq_gen/lfsr_2)
+     LUT4:I0->O            1   0.561   0.000  m_seq_gen/Mxor_feedback_xo<0>1 (m_seq_gen/feedback)
+     FDC:D                     0.197          m_seq_gen/lfsr_0
+    ----------------------------------------
+    Total                      1.741ns (1.253ns logic, 0.488ns route)
+                                       (72.0% logic, 28.0% route)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'clk_2m'
+  Clock period: 10.173ns (frequency: 98.301MHz)
+  Total number of paths / destination ports: 811266 / 655
+-------------------------------------------------------------------------
+Delay:               10.173ns (Levels of Logic = 43)
+  Source:            dpll_clock_recovery/int_error_1 (FF)
+  Destination:       dpll_clock_recovery/dco_increment_31 (FF)
+  Source Clock:      clk_2m rising
+  Destination Clock: clk_2m rising
+
+  Data Path: dpll_clock_recovery/int_error_1 to dpll_clock_recovery/dco_increment_31
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             4   0.495   0.607  dpll_clock_recovery/int_error_1 (dpll_clock_recovery/int_error_1)
+     LUT1:I0->O            1   0.561   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<1>_rt (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<1>_rt)
+     MUXCY:S->O            1   0.523   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<1> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<1>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<2> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<2>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<3> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<3>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<4> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<4>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<5> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<5>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<6> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<6>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<7> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<7>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<8> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<8>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<9> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<9>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<10> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<10>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<11> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<11>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<12> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<12>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<13> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<13>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<14> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<14>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<15> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<15>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<16> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<16>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<17> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<17>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<18> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<18>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<19> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<19>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<20> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<20>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<21> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<21>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<22> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<22>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<23> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<23>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<24> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<24>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<25> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<25>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<26> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<26>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<27> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<27>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<28> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<28>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<29> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_cy<29>)
+     XORCY:CI->O           1   0.654   0.357  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_xor<30> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd_30)
+     INV:I->O              1   0.562   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd1_lut<30>_INV_0 (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd1_lut<30>)
+     MUXCY:S->O            0   0.523   0.000  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd1_cy<30> (dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd1_cy<30>)
+     XORCY:CI->O          16   0.654   0.902  dpll_clock_recovery/Mmult_dco_increment_mult0001_Madd1_xor<31> (dpll_clock_recovery/dco_increment_mult0001<31>)
+     LUT3:I2->O            0   0.561   0.000  dpll_clock_recovery/Madd__add0000C221 (dpll_clock_recovery/Madd__add0000C22)
+     MUXCY:DI->O           1   0.713   0.000  dpll_clock_recovery/Madd__add0000_Madd_cy<24> (dpll_clock_recovery/Madd__add0000_Madd_cy<24>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Madd__add0000_Madd_cy<25> (dpll_clock_recovery/Madd__add0000_Madd_cy<25>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Madd__add0000_Madd_cy<26> (dpll_clock_recovery/Madd__add0000_Madd_cy<26>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Madd__add0000_Madd_cy<27> (dpll_clock_recovery/Madd__add0000_Madd_cy<27>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Madd__add0000_Madd_cy<28> (dpll_clock_recovery/Madd__add0000_Madd_cy<28>)
+     MUXCY:CI->O           1   0.065   0.000  dpll_clock_recovery/Madd__add0000_Madd_cy<29> (dpll_clock_recovery/Madd__add0000_Madd_cy<29>)
+     MUXCY:CI->O           0   0.065   0.000  dpll_clock_recovery/Madd__add0000_Madd_cy<30> (dpll_clock_recovery/Madd__add0000_Madd_cy<30>)
+     XORCY:CI->O           1   0.654   0.000  dpll_clock_recovery/Madd__add0000_Madd_xor<31> (dpll_clock_recovery/_add0000<31>)
+     FDCPE:D                   0.197          dpll_clock_recovery/dco_increment_31
+    ----------------------------------------
+    Total                     10.173ns (8.307ns logic, 1.866ns route)
+                                       (81.7% logic, 18.3% route)
+
+=========================================================================
+Timing constraint: Default OFFSET IN BEFORE for Clock 'clk_2m'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              1.401ns (Levels of Logic = 1)
+  Source:            clk_10k (PAD)
+  Destination:       dpll_clock_recovery/sync0 (FF)
+  Destination Clock: clk_2m rising
+
+  Data Path: clk_10k to dpll_clock_recovery/sync0
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     IBUF:I->O             2   0.824   0.380  clk_10k_IBUF (clk_10k_IBUF1)
+     FDC:D                     0.197          dpll_clock_recovery/sync0
+    ----------------------------------------
+    Total                      1.401ns (1.021ns logic, 0.380ns route)
+                                       (72.9% logic, 27.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_10k'
+  Total number of paths / destination ports: 1 / 1
+-------------------------------------------------------------------------
+Offset:              5.271ns (Levels of Logic = 1)
+  Source:            m_seq_gen/m_seq_out (FF)
+  Destination:       m_seq_out (PAD)
+  Source Clock:      clk_10k rising
+
+  Data Path: m_seq_gen/m_seq_out to m_seq_out
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDC:C->Q              2   0.495   0.380  m_seq_gen/m_seq_out (m_seq_gen/m_seq_out)
+     OBUF:I->O                 4.396          m_seq_out_OBUF (m_seq_out)
+    ----------------------------------------
+    Total                      5.271ns (4.891ns logic, 0.380ns route)
+                                       (92.8% logic, 7.2% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'clk_2m'
+  Total number of paths / destination ports: 198090910327531744 / 12
+-------------------------------------------------------------------------
+Offset:              69.640ns (Levels of Logic = 60)
+  Source:            display/freq_value_30 (FF)
+  Destination:       DCBA<2> (PAD)
+  Source Clock:      clk_2m rising
+
+  Data Path: display/freq_value_30 to DCBA<2>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDCE:C->Q             6   0.495   0.677  display/freq_value_30 (display/freq_value_30)
+     LUT4:I0->O            6   0.561   0.635  display/bcd5_mux00041 (display/Madd_old_bcd1_24_addsub0000_cy<0>)
+     LUT4:I1->O            9   0.562   0.763  display/bcd5_mux000811 (display/N130)
+     LUT3:I1->O            2   0.562   0.488  display/bcd5_mux001021 (display/N810)
+     LUT4:I0->O            9   0.561   0.763  display/bcd5_mux001211 (display/N1311)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux001611_SW0 (N208)
+     LUT4:I1->O            9   0.562   0.763  display/bcd5_mux001611 (display/N132)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux002011_SW0 (N254)
+     LUT4:I1->O            8   0.562   0.709  display/bcd5_mux002011 (display/N134)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux002411_SW0 (N252)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux002411 (display/N136)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux002811_SW0 (N250)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux002811 (display/N138)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux003211_SW0 (N248)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux003211 (display/N1411)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux003611_SW0 (N246)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux003611 (display/N144)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux004011_SW0 (N244)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux004011 (display/N147)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux004411_SW0 (N242)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux004411 (display/N1511)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux004811_SW0 (N240)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux004811 (display/N155)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux005211_SW0 (N238)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux005211 (display/N159)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux005611_SW0 (N236)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux005611 (display/N164)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux006011_SW0 (N234)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux006011 (display/N169)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux006411_SW0 (N232)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux006411 (display/N174)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux006811_SW0 (N230)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux006811 (display/N179)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux007211_SW0 (N228)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux007211 (display/N184)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux007611_SW0 (N226)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux007611 (display/N189)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux008011_SW0 (N224)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux008011 (display/N194)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux008411_SW0 (N222)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux008411 (display/N199)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux008811_SW0 (N220)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux008811 (display/N204)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux009211_SW0 (N218)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux009211 (display/N209)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux009611_SW0 (N216)
+     LUT4:I1->O            7   0.562   0.668  display/bcd5_mux009611 (display/N214)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux010011_SW0 (N214)
+     LUT4:I1->O            6   0.562   0.635  display/bcd5_mux010011 (display/N219)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux010411_SW0 (N212)
+     LUT4:I1->O            4   0.562   0.565  display/bcd5_mux010411 (display/N224)
+     LUT4:I1->O            1   0.562   0.423  display/bcd5_mux010811_SW0 (N210)
+     LUT4:I1->O            4   0.562   0.565  display/bcd5_mux010811 (display/N229)
+     LUT2:I1->O            2   0.562   0.488  display/bcd5_cmp_ge00271 (display/bcd5_cmp_ge0027)
+     LUT4:I0->O            2   0.561   0.382  display/bcd5_mux01101 (display/Madd__add0028_lut<2>)
+     LUT4:I3->O            3   0.561   0.517  display/bcd5_mux011211 (display/N234)
+     LUT4:I1->O            1   0.562   0.423  display/scan_sel<2>263_SW0 (N148)
+     LUT4:I1->O            1   0.562   0.359  display/scan_sel<2>263 (display/scan_sel<2>263)
+     LUT4:I3->O            1   0.561   0.000  display/scan_sel<2>21441 (display/scan_sel<2>2144)
+     MUXF5:I1->O           1   0.229   0.357  display/scan_sel<2>2144_f5 (DCBA_2_OBUF)
+     OBUF:I->O                 4.396          DCBA_2_OBUF (DCBA<2>)
+    ----------------------------------------
+    Total                     69.640ns (37.711ns logic, 31.929ns route)
+                                       (54.2% logic, 45.8% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 10.25 secs
+ 
+--> 
+
+
+Total memory usage is 560628 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    3 (   0 filtered)
+Number of infos    :    3 (   0 filtered)
+

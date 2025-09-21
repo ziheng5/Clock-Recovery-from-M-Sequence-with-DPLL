@@ -1,0 +1,6 @@
+verilog work "m_sequence_generator.v"
+verilog work "max_clock_recovery.v"
+verilog work "display.v"
+verilog work "top.v"
+verilog work "tb_top2.v"
+verilog work "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"

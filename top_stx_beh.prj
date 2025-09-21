@@ -1,0 +1,5 @@
+verilog isim_temp "m_sequence_generator.v"
+verilog isim_temp "dpll_clock_recovery.v"
+verilog isim_temp "display.v"
+verilog isim_temp "top.v"
+verilog isim_temp "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"

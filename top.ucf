@@ -1,0 +1,22 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "clk_10k" CLOCK_DEDICATED_ROUTE = FALSE;
+
+NET "DCBA[3]" LOC = P30;
+NET "DCBA[2]" LOC = P31;
+NET "DCBA[1]" LOC = P32;
+NET "DCBA[0]" LOC = P41;
+NET "w_out[0]" LOC = P47;
+NET "w_out[1]" LOC = P46;
+NET "w_out[2]" LOC = P45;
+NET "w_out[3]" LOC = P44;
+NET "w_out[4]" LOC = P43;
+NET "w_out[5]" LOC = P42;
+NET "clk_2m" LOC = P55;
+NET "m_seq_out" LOC = P135;
+NET "sys_clk_out" LOC = P138;
+NET "rst_n" LOC = P111;
+NET "clk_10k" LOC = P134;
+# NET "locked" LOC = P113;
+NET "dot" LOC = P48;

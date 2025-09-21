@@ -1,0 +1,64 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Mon Sep 15 22:01:25 2025
+# Process ID: 36276
+# Log file: /home/lengyu/linux_project_dir/vivado_dir/hans_solution/planAhead_run_4/planAhead.log
+# Journal file: /home/lengyu/linux_project_dir/vivado_dir/hans_solution/planAhead_run_4/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/lengyu/linux_project_dir/vivado_dir/hans_solution/pa.fromNetlist.tcl
+startgroup
+set_property package_pin P41 [get_ports {DCBA[3]}]
+endgroup
+startgroup
+set_property package_pin P32 [get_ports {DCBA[2]}]
+endgroup
+startgroup
+set_property package_pin P31 [get_ports {DCBA[1]}]
+endgroup
+startgroup
+set_property package_pin P30 [get_ports {DCBA[0]}]
+endgroup
+set_property package_pin "" [get_ports [list  {w_out[5]}]]
+startgroup
+set_property package_pin P42 [get_ports {w_out[0]}]
+endgroup
+startgroup
+set_property package_pin P43 [get_ports {w_out[1]}]
+endgroup
+startgroup
+set_property package_pin P44 [get_ports {w_out[2]}]
+endgroup
+startgroup
+set_property package_pin P45 [get_ports {w_out[3]}]
+endgroup
+startgroup
+set_property package_pin P46 [get_ports {w_out[4]}]
+endgroup
+startgroup
+set_property package_pin P47 [get_ports {w_out[5]}]
+endgroup
+startgroup
+set_property package_pin P55 [get_ports clk_2m]
+endgroup
+startgroup
+set_property package_pin P135 [get_ports clk_10k]
+endgroup
+startgroup
+set_property package_pin P139 [get_ports m_seq_out]
+endgroup
+startgroup
+set_property package_pin P138 [get_ports sys_clk_out]
+endgroup
+startgroup
+set_property package_pin P111 [get_ports rst_n]
+endgroup
+set_property package_pin "" [get_ports [list  locked]]
+startgroup
+set_property package_pin P135 [get_ports clk_10k]
+endgroup
+startgroup
+set_property package_pin P113 [get_ports locked]
+endgroup
+save_constraints

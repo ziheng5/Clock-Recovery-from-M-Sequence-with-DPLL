@@ -1,0 +1,4 @@
+verilog work "m_sequence_generator.v"
+verilog work "dpll_clock_recovery.v"
+verilog work "display.v"
+verilog work "top.v"
